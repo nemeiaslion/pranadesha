@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>50</x>
+      <y>160</y>
+      <w>80</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Vendedor</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>200</x>
+      <y>120</y>
+      <w>120</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Criar Pedido</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>100</x>
+      <y>140</y>
+      <w>120</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;40.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>340</x>
+      <y>30</y>
+      <w>450</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>- O ator carrega tela Incluir Pedido
+- O ator informa o Produto e a Quantidade
+- O sistema exibe o valor total e inclui o produto
+- O ator informa o Nome do comprador e confirma pedido
+- O sistema exibe uma mensagem de sucesso
+- Fim do Use Case
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

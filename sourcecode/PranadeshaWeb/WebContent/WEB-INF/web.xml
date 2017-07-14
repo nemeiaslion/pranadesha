@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>PranadeshaWeb</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  <!-- 
+  ##########################
+  # context parameters
+  ##########################
+   -->
+  <context-param>
+    <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+    <param-value>client</param-value>
+  </context-param>
+  <context-param>
+    <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+    <param-value>.xhtml</param-value>
+  </context-param>
+  <context-param>
+    <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <context-param>
+    <param-name>org.apache.myfaces.LOG_WEB_CONTEXT_PARAMS</param-name>
+    <param-value>false</param-value>
+  </context-param>
+  <context-param>
+    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-value>Development</param-value>
+  </context-param>
+  <!-- 
+  ##########################
+  # Servlet
+  ##########################
+   -->
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>/faces/*</url-pattern>
+  </servlet-mapping>
+  <!-- 
+  ##########################
+  # error pages
+  ##########################
+   -->
+  <error-page>
+    <error-code>404</error-code>
+    <location>/faces/pagenotfound.xhtml</location>
+  </error-page>
+  <!-- 
+  ##########################
+  # login configuration
+  ##########################
+   -->
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <form-login-config>
+      <form-login-page>/faces/login.xhtml</form-login-page>
+      <form-error-page>/faces/loginerror.xhtml</form-error-page>
+    </form-login-config>
+  </login-config>
+  <!-- 
+  ##########################
+  # security roles
+  ##########################
+   -->
+  <security-role>
+    <role-name>USERS</role-name>
+  </security-role>
+  <!-- 
+  ##########################
+  # security constraints
+  ##########################
+   -->
+  <security-constraint>
+    <display-name></display-name>
+    <web-resource-collection>
+      <web-resource-name></web-resource-name>
+      <url-pattern>/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>USERS</role-name>
+    </auth-constraint>
+    <user-data-constraint>
+      <transport-guarantee>NONE</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
+  <security-constraint>
+    <display-name>Allow access to common resource</display-name>
+    <web-resource-collection>
+      <web-resource-name>CSS resources</web-resource-name>
+      <url-pattern>/common/css/*</url-pattern>
+    </web-resource-collection>
+    <web-resource-collection>
+      <web-resource-name>Images resources</web-resource-name>
+      <url-pattern>/common/img/*</url-pattern>
+    </web-resource-collection>
+    <web-resource-collection>
+      <web-resource-name>Welcome Page</web-resource-name>
+      <url-pattern>/faces/welcome.xhtml</url-pattern>
+    </web-resource-collection>
+    <web-resource-collection>
+      <web-resource-name>Index Page</web-resource-name>
+      <url-pattern>/index.html</url-pattern>
+    </web-resource-collection>
+    <user-data-constraint>
+      <transport-guarantee>NONE</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
+</web-app>

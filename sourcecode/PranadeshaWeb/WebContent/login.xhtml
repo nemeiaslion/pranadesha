@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/common/template/publictemplate.xhtml">
+	<ui:define name="content">
+		<form action="j_security_check" id="loginForm" method="post">
+			<div style="margin: 0 auto; width: 300px;">
+				<div class="form-title">
+					<h:outputText value="#{bundle['login.title']}"/>
+				</div>
+				<div>
+					<div>
+						<label for="j_username"><h:outputText value="#{bundle['login.userid']}"/></label>
+					</div>
+					<div>
+						<input id="j_username" name="j_username" type="text" />
+					</div>
+				</div>
+				<div>
+					<div>
+						<label for="j_password"><h:outputText value="#{bundle['login.password']}"/></label>
+					</div>
+					<div>
+						<input id="j_password" name="j_password" type="password" />
+					</div>
+				</div>
+				<div style="float: right; margin-top: 20px;">
+					<input type="submit" />
+                    <input type="reset" />
+				</div>
+                <div style="height: 40px; width: 10px; margin-top: 20px;"></div>
+				<script type="text/javascript">
+					document.getElementById("j_username").focus();
+				</script>
+			</div>
+		</form>
+	</ui:define>
+</ui:composition>
+</html>

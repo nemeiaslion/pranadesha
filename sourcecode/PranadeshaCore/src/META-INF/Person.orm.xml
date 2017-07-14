@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
+    <package>com.vpaiva.pranadesha.core.cm.domain</package>
+    <entity class="Person">
+        <table name="cm_person"/>
+        <inheritance strategy="JOINED"/>
+        <discriminator-column name="person_type"/>
+        <attributes>
+            <id name="id">
+                <column name="person_id"/>
+                <generated-value strategy="IDENTITY"/>
+            </id>
+            <basic name="streetAddress">
+                <column name="street_address"/>
+            </basic>
+            <basic name="city">
+                <column name="city"/>
+            </basic>
+            <basic name="province">
+                <column name="province"/>
+            </basic>
+            <basic name="zipCode">
+                <column name="zip_code"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="NaturalPerson">
+        <table name="cm_natural_person"/>
+        <discriminator-value>N</discriminator-value>
+        <attributes>
+            <basic name="surname">
+                <column name="last_name"/>
+            </basic>
+            <basic name="givenName">
+                <column name="first_name"/>
+            </basic>
+            <basic name="middleName">
+                <column name="middle_name"/>
+            </basic>
+            <basic name="birthDate">
+                <column name="birthday_date"/>
+                <temporal>DATE</temporal>
+            </basic>
+            <basic name="mail">
+                <column name="mail"/>
+            </basic>
+            <basic name="mobile">
+                <column name="mobile"/>
+            </basic>
+            <transient name="description"/>
+            <transient name="userPassword"/>
+        </attributes>
+    </entity>
+</entity-mappings>

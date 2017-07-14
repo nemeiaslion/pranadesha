@@ -1,0 +1,74 @@
+@charset "UTF-8";
+
+div#content {
+    margin: 0 auto;
+    width: 800px;
+    border: solid black 1px;
+}
+
+div#footer {
+    margin: 50px 0 0 0;
+    border-top: solid black 1px;
+    text-align: center;
+    font-size: x-small;
+}
+
+div.form-title {
+    margin: 0 0 10px 0;
+    font-size: large;
+    font-weight: bold;
+    text-indent: 10pt;
+}
+
+div.user-info {
+    float: right;
+}
+
+div.button-bar {
+    float: right;
+}
+
+div.empty-box {
+    width: 10px;
+    height: 40px;
+}
+
+div.metadata {
+    float: left;
+    width: 120px;
+    font-size: small;
+}
+
+table.datatable {
+    border: solid black 1px;
+    border-collapse: collapse;
+}
+
+table.datatable td, table.datatable th {
+    border: solid black 1px;
+    padding: 10px;
+    font-size: small;
+}
+
+.datatable-oddrow {
+    background-color: rgb(220,220,220);
+}
+
+.datatable-evenrow {
+    background-color: rgb(240,240,240);
+}
+
+.datatable-header {
+    background-color: rgb(150,150,150);
+    color: white;
+}
+
+table.datatable tr:hover {
+    background-color: rgb(255,255,0);
+    color: black;
+    cursor: pointer;
+}
+
+.text-right {
+    text-align: right;
+}
