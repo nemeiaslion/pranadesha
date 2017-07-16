@@ -41,4 +41,12 @@ class PersonJpaRepository extends JpaRepository<Person, Integer> implements Pers
 		save(entity, NaturalPerson.class);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.vpaiva.pranadesha.core.cm.domain.PersonRepository#getNaturalPersonById(java.lang.Integer)
+	 */
+	@Override
+	public NaturalPerson getNaturalPersonById(Integer id) {
+		return getById(id, NaturalPerson.class);
+	}
+
 }

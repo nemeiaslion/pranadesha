@@ -2,12 +2,17 @@ package com.vpaiva.pranadesha.web.cm.person;
 
 import java.util.Date;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.vpaiva.pranadesha.core.cm.domain.NaturalPerson;
+import com.vpaiva.pranadesha.core.cm.domain.Person;
+import com.vpaiva.pranadesha.facade.FacadeException;
 import com.vpaiva.pranadesha.facade.cm.PersonFacade;
 
 /**
@@ -28,7 +33,12 @@ public class NaturalPersonMB {
 	 * personEjb
 	 */
 	@EJB
-	private PersonFacade personEjb;
+	private PersonFacade personFacade;
+	
+	/* ###############################################################
+	 *                  attributes
+	 * ############################################################### 
+	 * */
 	
 	/**
 	 * Given Name
@@ -91,19 +101,121 @@ public class NaturalPersonMB {
 	private String zipCode;
 	
 	/**
+	 * Natural Person Id
+	 * <p>Just filled when a register is being edited</p>
+	 */
+	private Integer id;
+	
+	/**
+	 * Managed id passed as parameter from one page to another
+	 */
+	private String managedId;
+	
+	/* ###############################################################
+	 *                  constructors
+	 * ############################################################### 
+	 * */
+	
+	/**
 	 * Default Constructor
 	 */
 	public NaturalPersonMB() { }
+	
+	/* ###############################################################
+	 *                  bean logic
+	 * ############################################################### 
+	 * */
+	
+	/**
+	 * Initializes bean
+	 */
+	@PostConstruct
+	public void init() {
+		if (managedId != null && !managedId.isEmpty()) {
+			try {
+				Integer id = Integer.parseInt(managedId);
+				NaturalPerson item = personFacade.getNaturalPersonById(id);
+				if (item == null) {
+					FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, "not found", "not found");
+					FacesContext.getCurrentInstance().addMessage(null, m);
+				} else {
+					setId(item.getId());
+					setGivenName(item.getGivenName());
+					setMiddleName(item.getMiddleName());
+					setSurname(item.getSurname());
+					setUserPassword(item.getUserPassword());
+					setDescription(item.getDescription());
+					setBirthDate(item.getBirthDate());
+					setMail(item.getMail());
+					setMobile(item.getMobile());
+					setStreetAddress(item.getStreetAddress());
+					setCity(item.getCity());
+					setProvince(item.getProvince());
+					setZipCode(item.getZipCode());
+				}
+			} catch (NumberFormatException e) {
+				log.error("error parsing id " + managedId, e);
+			}
+		}
+	}
+	
+	/**
+	 * Delete
+	 */
+	public String delete() {
+		try {
+			Person p = personFacade.delete(id);
+			log.info("deleted {}", p);
+			return clear();
+		} catch (FacadeException e) {
+			log.error("error on save natural person", e);
+			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage());
+			FacesContext.getCurrentInstance().addMessage(null, m);
+			return null;
+		}
+	}
 	
 	/**
 	 * Save
 	 */
 	public void save() {
 		NaturalPerson np = new NaturalPerson(surname, givenName, middleName, userPassword, description, mail, birthDate, mobile, streetAddress, city, province, zipCode);
-		personEjb.saveNaturalPerson(np);
-		log.info("created {}", np);
+		try {
+			personFacade.saveNaturalPerson(np);
+			log.info("created {}", np);
+			setId(np.getId());
+		} catch (FacadeException e) {
+			log.error("error on save natural person", e);
+			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage());
+			FacesContext.getCurrentInstance().addMessage(null, m);
+		}
 	}
-
+	
+	/**
+	 * Clear
+	 */
+	public String clear() {
+		setId(null);
+		setSurname(null);
+		setMiddleName(null);
+		setGivenName(null);
+		setUserPassword(null);
+		setDescription(null);
+		setBirthDate(null);
+		setMail(null);
+		setMobile(null);
+		setCity(null);
+		setProvince(null);
+		setStreetAddress(null);
+		setZipCode(null);
+		return "new";
+	}
+	
+	/* ###############################################################
+	 *                  getters and setters
+	 * ############################################################### 
+	 * */
+	
 	/**
 	 * @return the givenName
 	 */
@@ -270,5 +382,33 @@ public class NaturalPersonMB {
 	 */
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the managedId
+	 */
+	public String getManagedId() {
+		return managedId;
+	}
+
+	/**
+	 * @param managedId the managedId to set
+	 */
+	public void setManagedId(String managedId) {
+		this.managedId = managedId;
 	}
 }

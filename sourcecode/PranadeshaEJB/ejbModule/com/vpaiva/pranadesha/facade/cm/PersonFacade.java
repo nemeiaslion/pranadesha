@@ -5,6 +5,8 @@ import java.util.List;
 import javax.ejb.Local;
 
 import com.vpaiva.pranadesha.core.cm.domain.NaturalPerson;
+import com.vpaiva.pranadesha.core.cm.domain.Person;
+import com.vpaiva.pranadesha.facade.FacadeException;
 
 /**
  * Person Façace Service
@@ -35,6 +37,20 @@ public interface PersonFacade {
 	 * Save
 	 * @param entity
 	 */
-	void saveNaturalPerson(NaturalPerson entity);
+	void saveNaturalPerson(NaturalPerson entity) throws FacadeException;
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	NaturalPerson getNaturalPersonById(Integer id);
+	
+	/**
+	 * 
+	 * @param id
+	 * @return Deleted person
+	 */
+	Person delete(Integer id) throws FacadeException;
 	
 }

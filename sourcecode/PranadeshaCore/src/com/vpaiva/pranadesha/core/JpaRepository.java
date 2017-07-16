@@ -107,4 +107,30 @@ public abstract class JpaRepository<T, IdT> implements Repository<T, IdT> {
 		em.persist(entity);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.vpaiva.pranadesha.core.Repository#getById(java.lang.Object)
+	 */
+	@Override
+	public T getById(IdT id) {
+		return getById(id, entityClass);
+	}
+	
+	/**
+	 * Find a entity
+	 * @param id Id of entity
+	 * @param entityClass Type Class of Entity
+	 * @return the entity
+	 */
+	protected <R> R getById(IdT id, Class<R> entityClass) {
+		return em.find(entityClass, id);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.vpaiva.pranadesha.core.Repository#delete(java.lang.Object)
+	 */
+	@Override
+	public void delete(T entity) {
+		em.remove(entity);
+	}
+
 }

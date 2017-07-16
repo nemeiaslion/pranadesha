@@ -10,6 +10,8 @@
 <ui:composition template="/common/template/publictemplate.xhtml">
 	<ui:define name="content">
         <h:form id="naturalPersonForm">
+    	    <h:inputHidden id="id" value="#{naturalPersonMB.id}"/>
+    	    <t:saveState value="#{naturalPersonMB.id}"/>
     	    <div>
                 <div class="form-title">${bundle['natural.person.title']}</div>
                 <ul>
@@ -118,7 +120,9 @@
                 </div>
                 <h:messages></h:messages>
                 <div class="button-bar">
+                	<h:commandButton value="#{bundle['delete']}" action="#{naturalPersonMB.delete}" rendered="#{naturalPersonMB.id ne null}" immediate="true" />
                     <h:commandButton value="#{bundle['save']}" actionListener="#{naturalPersonMB.save}"/>
+                    <h:commandButton value="#{bundle['new']}" action="#{naturalPersonMB.clear}" rendered="#{naturalPersonMB.id ne null}" immediate="true"/>
                 </div>
                 <div class="empty-box"></div>
                 <script type="text/javascript">

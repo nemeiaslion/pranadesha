@@ -25,7 +25,10 @@
                         <f:facet name="header">
                             <h:outputText value="#{bundle['natural.person.surname']}, #{bundle['natural.person.givenName']}"/>
                         </f:facet>
-                        <h:outputText value="#{item.surname}, #{item.givenName}"/>
+                        <h:link outcome="/site/naturalperson/naturalperson">
+                        	<f:param name="id" value="#{item.id}"/>
+                        	<h:outputText value="#{item.surname}, #{item.givenName}"/>
+                        </h:link>
                     </h:column>
                     <h:column>
                         <f:facet name="header">

@@ -32,4 +32,11 @@ public interface PersonRepository extends Repository<Person, Integer> {
 	 * @param entity Natural Person to be persisted
 	 */
 	void saveNaturalPerson(NaturalPerson entity);
+	
+	/**
+	 * Get Natural Person by Id
+	 * @param id Id of Natural Person
+	 * @return Natural Person or null if does not exists
+	 */
+	NaturalPerson getNaturalPersonById(Integer id);
 }

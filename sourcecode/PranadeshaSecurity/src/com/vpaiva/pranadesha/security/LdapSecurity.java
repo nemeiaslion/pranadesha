@@ -72,6 +72,25 @@ public class LdapSecurity {
 		name = "cn=USERS,ou=Groups,ou=Pranadesha," + baseDN;
 		String[] members = { "cn=root,ou=People,ou=Pranadesha," + baseDN };
 		createGroupOfNames(context, name, "USERS", "Pranadesha Users", members);
+		//
+		name = SecurityProperties.getInstance().getBaseDN();
+		SearchControls controls = new SearchControls();
+		String[] returningAttrs = { "userPassword" };
+		controls.setSearchScope(SearchControls.SUBTREE_SCOPE);
+		controls.setReturningAttributes(returningAttrs);
+		String filter = "(|(objectClass=inetOrgPerson)(objectClass=simpleSecurityObject))";
+		NamingEnumeration<SearchResult> results = context.search(name, filter, controls);
+		while (results.hasMore()) {
+			SearchResult result = results.next();
+			String dn = result.getNameInNamespace();
+			Attribute attr = result.getAttributes().get("userPassword");
+			if (attr != null) {
+				byte[] value = (byte[]) attr.get();
+				String userPassword = new String(value);
+				log.info("{}/{}", dn, userPassword);
+			}
+		}
+		
 	}
 	
 	/**

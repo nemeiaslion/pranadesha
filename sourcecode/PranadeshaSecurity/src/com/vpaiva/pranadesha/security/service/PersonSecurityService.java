@@ -3,6 +3,7 @@
  */
 package com.vpaiva.pranadesha.security.service;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,6 +24,7 @@ import javax.naming.ldap.LdapContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.vpaiva.pranadesha.security.PolicySecurity;
 import com.vpaiva.pranadesha.security.SecurityProperties;
 
 /**
@@ -39,11 +41,22 @@ public class PersonSecurityService {
 	@Inject
 	private LdapContext context;
 	
-	public String createSimpleSecurityObject(String cn, String userPassword) throws NamingException {
-		String name = "cn=" + cn + "ou=People," + BASE_SEARCH;
+	@Inject
+	private PolicySecurity policySecurity;
+	
+	public String createPerson(String sn, String mail, String userPassword, String telephoneNumber, String seeAlso, String description) throws NamingException, NoSuchAlgorithmException {
+		String name = "cn=" + mail + ",ou=People," + BASE_SEARCH;
 		Attributes attrs = new BasicAttributes(true);
-		attrs.put("objectClass", "simpleSecurityObject");
-		attrs.put("userPassword", userPassword);
+		attrs.put("objectClass", "inetOrgPerson");
+		attrs.put("sn", sn);
+		attrs.put("cn", mail);
+		attrs.put("uid", mail);
+		attrs.put("mail", mail);
+		String hash = policySecurity.hashPassword(userPassword);
+		attrs.put("userPassword", hash);
+		attrs.put("telephoneNumber", telephoneNumber);
+		attrs.put("seeAlso", seeAlso);
+		attrs.put("description", description);
 		DirContext subContext = context.createSubcontext(name, attrs);
 		log.info("created " + name);
 		subContext.close();
@@ -51,7 +64,7 @@ public class PersonSecurityService {
 	}
 	
 	public void addToGroup(String groupName, String member) throws NamingException {
-		String name = "cn=" + groupName + "ou=Groups," + BASE_SEARCH;
+		String name = "cn=" + groupName + ",ou=Groups," + BASE_SEARCH;
 		Attribute memberAttr = new BasicAttribute("member", member);
 		Attributes attrsToModify = new BasicAttributes();
 		attrsToModify.put(memberAttr);
@@ -79,7 +92,15 @@ public class PersonSecurityService {
 	}
 	
 	public void delete(String cn) throws NamingException {
-		String name = "cn=" + cn + "ou=People," + BASE_SEARCH;
+		String name = "cn=" + cn + ",ou=People," + BASE_SEARCH;
+		if (isMemberOf("USERS", name)) {
+			String groupName = "cn=USERS,ou=Groups," + BASE_SEARCH;
+			Attribute memberAttr = new BasicAttribute("member", name);
+			Attributes attrsToModify = new BasicAttributes();
+			attrsToModify.put(memberAttr);
+			context.modifyAttributes(groupName, LdapContext.REMOVE_ATTRIBUTE, attrsToModify);
+			
+		}
 		context.destroySubcontext(name);
 		log.info("deleted " + name);
 	}
@@ -87,19 +108,30 @@ public class PersonSecurityService {
 	public Map<String, String> find(String cn) throws NamingException {
 		Map<String, String> foundResult = new HashMap<String, String>();
 		String name = "cn=" + cn + ",ou=People," + BASE_SEARCH;
-		String[] returningAttrs = { "name" };
+		String[] returningAttrs = { "sn", "cn", "userPassword", "telephoneNumber", "seeAlso", "description" };
 		SearchControls controls = new SearchControls();
 		controls.setReturningAttributes(returningAttrs);
 		controls.setSearchScope(SearchControls.OBJECT_SCOPE);
 		try {
-			NamingEnumeration<SearchResult> results = context.search(name, "(objectClass=simpleSecurityObject)", controls);
-			SearchResult result = null;
-			if ((result = results.next()) != null) {
-				foundResult.put("name", result.getName());
+			NamingEnumeration<SearchResult> results = context.search(name, "(objectClass=person)", controls);
+			while (results.hasMore()) {
+				SearchResult result = results.next();
+				foundResult.put("name", result.getNameInNamespace());
 				NamingEnumeration<? extends Attribute> attrs = result.getAttributes().getAll();
-				Attribute attr = null;
-				while ((attr = attrs.next()) != null) {
-					foundResult.put(attr.getID(), attr.get().toString());
+				while (attrs.hasMore()) {
+					Attribute attr = attrs.next();
+					String id = attr.getID();
+					NamingEnumeration<?> values = attr.getAll();
+					StringBuilder sb = new StringBuilder();
+					while (values.hasMore()) {
+						Object value = values.next();
+						if (value instanceof byte[]) {
+							sb.append(new String((byte[]) value));
+						} else {
+							sb.append(value);
+						}
+					}
+					foundResult.put(id, sb.toString());
 				}
 			}
 		} catch (NameNotFoundException e) {

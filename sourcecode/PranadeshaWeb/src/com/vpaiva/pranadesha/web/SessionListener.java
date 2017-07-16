@@ -1,5 +1,6 @@
 package com.vpaiva.pranadesha.web;
 
+import javax.inject.Inject;
 import javax.naming.NamingException;
 import javax.naming.ldap.LdapContext;
 import javax.servlet.annotation.WebListener;
@@ -18,7 +19,17 @@ import com.vpaiva.pranadesha.security.LdapSecurity;
 @WebListener
 public class SessionListener implements HttpSessionListener {
 	
+	/**
+	 * log
+	 */
 	private static final Logger log = LogManager.getLogger(SessionListener.class);
+	
+	/**
+	 * LDAP Context
+	 */
+	@Inject
+	private LdapContext context;
+	
     /**
      * Default constructor. 
      */
@@ -29,16 +40,10 @@ public class SessionListener implements HttpSessionListener {
      */
     public void sessionCreated(HttpSessionEvent se)  {
     	log.debug("session created " + se.getSession().getId());
-    	LdapContext context = null;
     	try {
-			context = LdapSecurity.getContext();
-			LdapSecurity.init(context);
+    		LdapSecurity.init(context);
 		} catch (NamingException e) {
 			log.catching(e);
-		} finally {
-			if (context != null) {
-				try { context.close(); } catch (Exception e) { log.error(e); }
-			}
 		}
     }
 

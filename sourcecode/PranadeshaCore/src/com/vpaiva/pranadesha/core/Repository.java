@@ -40,4 +40,17 @@ public interface Repository<T, IdT> {
 	 */
 	void save(T entity);
 	
+	/**
+	 * Removes entity from repository
+	 * @param entity Entity to be removed
+	 */
+	void delete(T entity);
+	
+	/**
+	 * Get entity by id
+	 * @param id primary key value
+	 * @return Entity identified by id
+	 */
+	T getById(IdT id);
+	
 }
