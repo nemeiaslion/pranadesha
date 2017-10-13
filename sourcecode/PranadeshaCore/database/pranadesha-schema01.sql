@@ -59,7 +59,8 @@ create table cm_person_phone (
 
 create table um_course (
   course_id integer unsigned not null auto_increment
-  , course_name char(30)
+  , course_name char(33)
+  , prerequisite_course_id integer unsigned
   , constraint pk_course primary key (course_id)
 ) engine MyISAM;
 

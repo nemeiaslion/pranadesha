@@ -12,6 +12,7 @@
             <base-name>com.vpaiva.pranadesha.web.UIBundle</base-name>
             <var>bundle</var>
         </resource-bundle>
+        <message-bundle>com.vpaiva.pranadesha.web.UIBundle</message-bundle>
     </application>
     <managed-bean>
     	<managed-bean-name>naturalPersonMB</managed-bean-name>
@@ -28,12 +29,38 @@
     	<managed-bean-class>com.vpaiva.pranadesha.web.cm.person.SearchNaturalPersonMB</managed-bean-class>
     	<managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+    	<managed-bean-name>courseMB</managed-bean-name>
+    	<managed-bean-class>com.vpaiva.pranadesha.web.um.course.CourseMB</managed-bean-class>
+    	<managed-bean-scope>request</managed-bean-scope>
+    	<managed-property>
+    		<property-name>managedId</property-name>
+    		<property-class>java.lang.String</property-class>
+    		<value>#{param.id}</value>
+    	</managed-property>
+    </managed-bean>
     <navigation-rule>
     	<display-name>site/naturalperson/naturalperson.xhtml</display-name>
     	<from-view-id>/site/naturalperson/naturalperson.xhtml</from-view-id>
     	<navigation-case>
     		<from-outcome>new</from-outcome>
     		<to-view-id>/site/naturalperson/naturalperson.xhtml</to-view-id>
+    	</navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+    	<display-name>site/course/course.xhtml</display-name>
+    	<from-view-id>/site/course/course.xhtml</from-view-id>
+    	<navigation-case>
+    		<from-outcome>showResults</from-outcome>
+    		<to-view-id>/site/course/search.xhtml</to-view-id>
+    	</navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+    	<display-name>site/course/search.xhtml</display-name>
+    	<from-view-id>/site/course/search.xhtml</from-view-id>
+    	<navigation-case>
+    		<from-outcome>edit</from-outcome>
+    		<to-view-id>/site/course/course.xhtml</to-view-id>
     	</navigation-case>
     </navigation-rule>
 </faces-config>

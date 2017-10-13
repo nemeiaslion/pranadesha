@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>PranadeshaWeb</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   <!-- 
   ##########################
@@ -78,10 +78,10 @@
   ##########################
    -->
   <security-constraint>
-    <display-name></display-name>
+    <display-name>Access to Site</display-name>
     <web-resource-collection>
       <web-resource-name></web-resource-name>
-      <url-pattern>/*</url-pattern>
+      <url-pattern>/faces/site/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>USERS</role-name>
@@ -108,8 +108,5 @@
       <web-resource-name>Index Page</web-resource-name>
       <url-pattern>/index.html</url-pattern>
     </web-resource-collection>
-    <user-data-constraint>
-      <transport-guarantee>NONE</transport-guarantee>
-    </user-data-constraint>
   </security-constraint>
 </web-app>

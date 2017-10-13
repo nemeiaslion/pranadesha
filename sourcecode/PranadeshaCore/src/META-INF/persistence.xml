@@ -3,6 +3,7 @@
 	<persistence-unit name="PranadeshaCore">
         <jta-data-source>jdbc/pranadesha</jta-data-source>
         <mapping-file>META-INF/Person.orm.xml</mapping-file>
+        <mapping-file>META-INF/Course.orm.xml</mapping-file>
         <properties>
             <property name="eclipselink.logging.level" value="ALL"/>
             <property name="eclipselink.logging.parameters" value="true"/>

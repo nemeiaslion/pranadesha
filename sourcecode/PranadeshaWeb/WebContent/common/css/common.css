@@ -72,3 +72,14 @@ table.datatable tr:hover {
 .text-right {
     text-align: right;
 }
+
+.message-info {
+	font-size: small;
+	color: blue;
+}
+
+.message-error {
+	font-size: small;
+	color: red;
+}
+
