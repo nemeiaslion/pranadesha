@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import com.vpaiva.pranadesha.core.um.domain.Course;
+import com.vpaiva.pranadesha.facade.Facade;
 import com.vpaiva.pranadesha.facade.FacadeException;
 
 /**
@@ -15,7 +16,7 @@ import com.vpaiva.pranadesha.facade.FacadeException;
  *
  */
 @Local
-public interface CourseFacade {
+public interface CourseFacade extends Facade<Course, Integer> {
 	
 	/**
 	 * Get all courses
@@ -40,7 +41,7 @@ public interface CourseFacade {
 	 * @param course course to be saved
 	 * @return saved course
 	 */
-	Course create(Course course);
+	void create(Course course);
 	
 	/**
 	 * Deletes a course

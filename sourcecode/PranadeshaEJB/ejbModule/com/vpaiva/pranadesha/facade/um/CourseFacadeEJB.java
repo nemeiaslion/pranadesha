@@ -38,9 +38,8 @@ public class CourseFacadeEJB implements CourseFacade {
 	 * @see com.vpaiva.pranadesha.facade.um.CourseFacade#create(com.vpaiva.pranadesha.core.um.domain.Course)
 	 */
 	@Override
-	public Course create(Course course) {
+	public void create(Course course) {
 		courseRepository.save(course);
-		return course;
 	}
 
 	/* (non-Javadoc)

@@ -22,12 +22,23 @@ public class UmRepositoryFactory {
 	private EntityManager em;
 	
 	/**
-	 * Produces proper CourseRepository instance
+	 * Produces proper CourseRepository implementation
 	 * @return CourseRepository instance
 	 */
 	@Produces
 	public CourseRepository getCourseRepository() {
 		CourseRepository r = new CourseJpaRepository();
+		r.joinSession(em);
+		return r;
+	}
+	
+	/**
+	 * Produces proper WorkshopRepository implementation
+	 * @return WorkshopRepository implementation
+	 */
+	@Produces
+	public WorkshopRepository getClassRepository() {
+		WorkshopRepository r = new WorkshopJpaRepository();
 		r.joinSession(em);
 		return r;
 	}

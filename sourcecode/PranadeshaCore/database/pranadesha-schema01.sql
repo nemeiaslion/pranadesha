@@ -10,7 +10,7 @@ drop table cm_person;
 drop table cm_natural_person;
 drop table cm_person_phone;
 drop table um_course;
-drop table um_class;
+drop table um_workshop;
 drop table um_class_schedule;
 drop table um_class_attendee;
 drop table um_class_attendance;
@@ -64,17 +64,17 @@ create table um_course (
   , constraint pk_course primary key (course_id)
 ) engine MyISAM;
 
-create table um_class (
-  class_id integer unsigned not null auto_increment
+create table um_workshop (
+  workshop_id integer unsigned not null auto_increment
   , course_id integer unsigned
-  , class_description char(50)
+  , workshop_description char(50)
   , start_date date
   , end_date date
   , street char(50)
   , neighbourhood char(50)
   , zip char(14)
   , phone char(20)
-  , constraint pk_class primary key (class_id)
+  , constraint pk_workshop primary key (workshop_id)
 ) engine MyISAM;
 
 create table um_class_schedule (

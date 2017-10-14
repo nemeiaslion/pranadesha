@@ -39,6 +39,16 @@
     		<value>#{param.id}</value>
     	</managed-property>
     </managed-bean>
+    <managed-bean>
+    	<managed-bean-name>workshopMB</managed-bean-name>
+    	<managed-bean-class>com.vpaiva.pranadesha.web.um.workshop.WorkshopMB</managed-bean-class>
+    	<managed-bean-scope>request</managed-bean-scope>
+    	<managed-property>
+    		<property-name>managedId</property-name>
+    		<property-class>java.lang.String</property-class>
+    		<value>#{param.id}</value>
+    	</managed-property>
+    </managed-bean>
     <navigation-rule>
     	<display-name>site/naturalperson/naturalperson.xhtml</display-name>
     	<from-view-id>/site/naturalperson/naturalperson.xhtml</from-view-id>
@@ -61,6 +71,22 @@
     	<navigation-case>
     		<from-outcome>edit</from-outcome>
     		<to-view-id>/site/course/course.xhtml</to-view-id>
+    	</navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+    	<display-name>site/workshop/workshop.xhtml</display-name>
+    	<from-view-id>/site/workshop/workshop.xhtml</from-view-id>
+    	<navigation-case>
+    		<from-outcome>showResults</from-outcome>
+    		<to-view-id>/site/workshop/search.xhtml</to-view-id>
+    	</navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+    	<display-name>site/workshop/search.xhtml</display-name>
+    	<from-view-id>/site/workshop/search.xhtml</from-view-id>
+    	<navigation-case>
+    		<from-outcome>edit</from-outcome>
+    		<to-view-id>/site/workshop/workshop.xhtml</to-view-id>
     	</navigation-case>
     </navigation-rule>
 </faces-config>

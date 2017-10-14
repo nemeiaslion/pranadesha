@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
+	<package>com.vpaiva.pranadesha.core.um.domain</package>
+	<entity class="Workshop">
+		<table name="um_workshop"/>
+		<attributes>
+			<id name="id">
+				<column name="workshop_id"/>
+			</id>
+			<basic name="description">
+				<column name="workshop_description"/>
+			</basic>
+			<basic name="initDate">
+				<column name="start_date"/>
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="endDate">
+				<column name="end_date"/>
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="street">
+				<column name="street"/>
+			</basic>
+			<basic name="neighborhood">
+				<column name="neighbourhood"/>
+			</basic>
+			<basic name="zip">
+				<column name="zip"/>
+			</basic>
+			<basic name="phone">
+				<column name="phone"/>
+			</basic>
+			<many-to-one name="course">
+				<join-column name="course_id"/>
+			</many-to-one>
+		</attributes>
+	</entity>
+</entity-mappings>
