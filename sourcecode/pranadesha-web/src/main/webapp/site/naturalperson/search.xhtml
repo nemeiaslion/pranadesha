@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/common/template/usertemplate.xhtml">
+	<ui:define name="user-content">
+	    <h:form id="naturalPersonForm">
+            <div>
+                <div class="form-title">${bundle['natural.person.title']}</div>
+                <h:dataTable value="#{searchNaturalPersonMB.results}" var="item"
+                             styleClass="datatable"
+                             rowClasses="datatable-oddrow,datatable-evenrow"
+                             headerClass="datatable-header"
+                             width="100%">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle['natural.person.surname']}, #{bundle['natural.person.givenName']}"/>
+                        </f:facet>
+                        <h:link outcome="/site/naturalperson/naturalperson">
+                        	<f:param name="id" value="#{item.id}"/>
+                        	<h:outputText value="#{item.surname}, #{item.givenName}"/>
+                        </h:link>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle['natural.person.birthDate']}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.birthDate}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle['natural.person.mail']}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.mail}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle['natural.person.mobile']}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.mobile}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle['person.streetAddress']}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.streetAddress}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle['person.city']}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.city}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle['person.province']}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.province}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle['person.zipCode']}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.zipCode}"/>
+                    </h:column>
+                </h:dataTable>
+            </div>
+        </h:form>
+	</ui:define>
+</ui:composition>
+</html>

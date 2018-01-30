@@ -1,0 +1,202 @@
+@charset "UTF-8";
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+div.page-title {
+	text-align: center; 
+	color: #ffff80; 
+	padding: 10px; 
+	font-size: 36px; 
+	font-weight: bold;
+}
+
+div#header {
+	height: 60px;
+	background-image: url("../img/bluehead2.jpg");
+	background-repeat: repeat-x;
+}
+
+div#middle-bar {
+	height: 30px;
+	background-image: url("../img/bluemiddle2.jpg");
+	background-repeat: repeat-x;
+}
+
+div#menu-bar {
+	height: 25px;
+	padding-top: 5px;
+	width: 870px;
+	margin: auto;
+}
+
+div#menu-bar ul {
+	margin: 0;
+	padding: 0;
+}
+
+div#menu-bar li {
+	list-style: none;
+	display: inline-block;
+	margin-right: 20px;
+	margin-left: 20px;
+}
+
+div#menu-bar a {
+	display: inline-block;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+div#menu-bar a, div#menu-bar a:visited {
+	color: #ffff80;
+}
+
+div#menu-bar a:hover {
+	color: #ff8040;
+}
+
+div#content {
+    margin: 0 auto;
+    width: 800px;
+    border: solid black 1px;
+}
+
+div#footer {
+    /*margin: 50px 0 0 0;*/
+    border-top: solid black 1px;
+    text-align: center;
+    font-size: x-small;
+}
+
+div.form-title {
+    margin: 0 0 10px 0;
+    font-size: large;
+    font-weight: bold;
+    text-indent: 10pt;
+	color: #ff8040;
+}
+
+div.user-info {
+    float: right;
+}
+
+div.button-bar {
+    float: right;
+}
+
+div.empty-box {
+    width: 10px;
+    height: 40px;
+}
+
+div.center-form {
+	width: 600px;
+	margin: 10px auto;
+	background-color: #ffffbf;
+	padding: 10px;
+}
+
+div.center-form label {
+	color: #ff8040;
+}
+
+input[type=button], input[type=submit] {
+	border-radius: 4px;
+	padding: 10px 24px;
+	background-color: #ff8040;
+	color: white;
+	border: none;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	cursor: pointer;
+}
+
+div.row, div.evenrow, div.oddrow {
+	padding: 2px 0 2px 0;
+}
+
+div.metadata {
+    /*float: left;
+    width: 120px;
+    font-size: small;
+    text-align: right;
+    padding-right: 20px;*/
+}
+
+div.infodata input[type=text], div.infodata input[type=password], div.infodata textarea {
+	font-family: courier new;
+}
+
+table.datatable {
+    border: solid black 1px;
+    border-collapse: collapse;
+}
+
+table.datatable td, table.datatable th {
+    border: solid black 1px;
+    padding: 10px;
+    font-size: small;
+}
+
+.datatable-oddrow {
+    background-color: rgb(220,220,220);
+}
+
+.datatable-evenrow {
+    background-color: rgb(240,240,240);
+}
+
+.datatable-header {
+    background-color: rgb(150,150,150);
+    color: white;
+}
+
+table.datatable tr:hover {
+    background-color: rgb(255,255,0);
+    color: black;
+    cursor: pointer;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.message-info {
+	font-size: small;
+	color: green;
+}
+
+.message-error {
+	font-size: small;
+	color: red;
+}
+
+.left-menu {
+	float: left;
+}
+
+.right-menu {
+	float: right;
+}
+
+.left-menu, .right-menu {
+	width: 190px;
+	background-color: #91d4ff;
+	height: 800px;
+	padding: 5px;
+	background-image: url("../img/bluebody2.jpg");
+	background-repeat: repeat-x;
+}
+
+.user-content {
+	margin-left: 200px;
+	margin-right: 200px;
+	padding: 5px;
+	height: 800px;
+	border: solid black 1px;
+	border-bottom: none;
+}

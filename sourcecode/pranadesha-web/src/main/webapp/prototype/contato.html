@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../common/css/common.css" />
+</head>
+<body>
+	<div id="header">
+		<div style="position: absolute; right: 0">
+			<select>
+				<option>English</option>
+				<option>Portuguese</option>
+			</select>
+		</div>
+		<div style="text-align: center; color: #ffff80; padding: 10px; font-size: 36px; font-weight: bold;">Pranadesha Web Application</div>
+	</div>
+	<div id="middle-bar">
+		<div id="menu-bar" style="width: 800px;">
+			<ul>
+				<li>
+					<a href="welcome.html">Home</a>
+				</li>
+				<li>
+					<a href="oqueecurapranica.html">O que &eacute; Cura Pr&acirc;nica</a>
+				</li>
+				<li>
+					<a href="meditacao.html">Medita&ccedil;&atilde;o</a>
+				</li>
+				<li>
+					<a href="agendadecursos.html">Agenda de Cursos</a>
+				</li>
+				<li>
+					<a href="contato.html" style="color: #ff8040;">Contato</a>
+				</li>
+				<li>
+					<a href="login.html">Login</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div id="content">
+		<form action="contato.html" id="contatoForm" method="post">
+			<div>
+				<div style="height: 10px; width: 10px;"></div>
+				<div class="evenrow">
+					<div class="metadata">
+						<label for="email">Seu e-mail</label>
+					</div>
+					<div class="infodata">
+						<input id="email" name="email" type="text" size="70"/>
+					</div>
+				</div>
+				<div class="oddrow">
+					<div class="metadata">
+						<label for="subject">Assunto</label>
+					</div>
+					<div class="infodata">
+						<input id="subject" name="subject" type="text" size="70"/>
+					</div>
+				</div>
+				<div class="evenrow">
+					<div class="metadata">
+						<label for="message">Mensagem</label>
+					</div>
+					<div class="infodata">
+						<textarea rows="20" cols="70" name="message" id="message"></textarea>
+					</div>
+				</div>
+				<div class="oddrow">
+					<div class="metadata">
+						<div style="width: 10px; height: 10px;"></div>
+					</div>
+					<input type="submit" value="Enviar"/>
+				</div>
+				<div class="evenrow">
+					<div class="metadata">
+						<div style="width: 10px; height: 10px;"></div>
+					</div>
+					<div>
+						<a href="contato2.html">Vers&atilde;o 2</a>
+					</div>
+				</div>
+				<script type="text/javascript">
+					document.getElementById("email").focus();
+				</script>
+			</div>
+		</form>
+	</div>
+	<div id="footer">
+		<div>Pranadesha Web</div>
+	</div>
+</body>
+</html>

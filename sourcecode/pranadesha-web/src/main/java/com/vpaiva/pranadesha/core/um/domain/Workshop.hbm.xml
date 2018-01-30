@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.vpaiva.pranadesha.core.um.domain">
+  <class name="Workshop" table="um_workshop">
+    <id name="id" column="workshop_id"/>
+    <property name="description" column="workshop_description"/>
+    <property name="initDate" column="start_date" type="date" />
+    <property name="endDate" column="end_date"/>
+    <property name="street" column="street"/>
+    <property name="neighborhood" column="neighbourhood"/>
+    <property name="zip" column="zip"/>
+    <property name="phone" column="phone"/>
+    <many-to-one name="course" column="course_id" cascade="all"/>
+  </class>
+</hibernate-mapping>

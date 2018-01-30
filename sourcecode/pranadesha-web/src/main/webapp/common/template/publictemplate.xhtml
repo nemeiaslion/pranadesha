@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:t="http://myfaces.apache.org/tomahawk">
+
+<ui:composition template="/common/template/common.xhtml">
+	<ui:define name="user-info">
+		<ui:include src="/common/template/language.xhtml"/>
+		<h:panelGroup rendered="#{userMB.authenticated}">
+             <h:outputFormat value="#{bundle['logged.as']}">
+                 <f:param value="#{userMB.userName}"></f:param>
+             </h:outputFormat>
+             <span>
+                 <a href="${request.contextPath}/logout">
+                     [<h:outputText value="#{bundle['logout']}"/>]
+                 </a> 
+             </span>
+        </h:panelGroup>
+	</ui:define>
+	<ui:define name="menu-bar">
+		<ui:include src="/common/template/publicmenu.xhtml"/>
+	</ui:define>
+	<ui:define name="content">
+        <ui:insert name="content">
+        	<div style="height: 480px; background-image: url('#{request.contextPath}/common/img/coroa.jpg'); background-position: center center; background-size: 640px; background-repeat: no-repeat;"></div>
+        </ui:insert>
+	</ui:define>
+</ui:composition>
+</html>

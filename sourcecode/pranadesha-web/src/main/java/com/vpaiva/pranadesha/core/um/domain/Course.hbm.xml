@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.vpaiva.pranadesha.core.um.domain">
+  <class name="Course" table="um_course">
+    <id name="id" column="course_id">
+      <generator class="identity"/>
+    </id>
+    <property name="name" column="course_name"/>
+    <many-to-one name="prerequisite" column="prerequisite_course_id"/>
+  </class>
+  <query name="course.isPrerequisite">select count(o.id) from Course o where o.prerequisite.id = :id</query>
+</hibernate-mapping>

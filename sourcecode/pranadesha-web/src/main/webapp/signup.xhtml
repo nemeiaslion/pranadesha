@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+<ui:composition template="/common/template/publictemplate.xhtml">
+	<ui:define name="content">
+		<div class="center-form" style="width: 400px;">
+			<h:form id="signupForm">
+				<h:messages errorClass="message-error" infoClass="message-info" globalOnly="true"/>
+				<div class="row">
+					<div>
+						<h:outputLabel for="givenName" value="#{bundle['signup.givenName']}"/>
+						<span>
+							<h:message for="givenName" errorClass="message-error"/>
+						</span>
+					</div>
+					<div>
+						<h:inputText id="givenName" 
+						             value="#{signupMB.givenName}" 
+						             required="true" 
+						             requiredMessage="#{bundle['required']}" 
+						             maxlength="20" 
+						             size="50"
+						             label="#{bundle['signup.givenName']}"/>
+					</div>
+				</div>
+				<div class="row">
+					<div>
+						<h:outputLabel for="surname" value="#{bundle['signup.surname']}"/>
+						<span>
+							<h:message for="surname" errorClass="message-error"/>
+						</span>
+					</div>
+					<div>
+						<h:inputText id="surname" 
+						             value="#{signupMB.surname}" 
+						             required="true" 
+						             requiredMessage="#{bundle['required']}" 
+						             maxlength="20" 
+						             size="50" label="#{bundle['signup.surname']}"/>
+					</div>
+				</div>
+				<div class="row">
+					<div>
+						<h:outputLabel for="mail" value="#{bundle['signup.mail']}"/>
+						<span>
+							<h:message for="mail" errorClass="message-error"/>
+						</span>
+					</div>
+					<div>
+						<h:inputText id="mail" 
+						             value="#{signupMB.mail}" 
+						             required="true" 
+						             requiredMessage="#{bundle['required']}" 
+						             maxlength="50" 
+						             size="50"
+						             label="#{bundle['signup.mail']}">
+							<t:validateEmail/>
+						</h:inputText>
+					</div>
+				</div>
+				<div class="row">
+					<div>
+						<h:outputLabel for="password" value="#{bundle['signup.password']}"/>
+						<span>
+							<h:message for="password" errorClass="message-error"/>
+						</span>
+					</div>
+					<div>
+						<h:inputSecret id="password" 
+						               value="#{signupMB.password}" 
+						               required="true" 
+						               requiredMessage="#{bundle['required']}"
+						               maxlength="20" 
+						               size="50"
+						               label="#{bundle['signup.password']}">
+							<f:validateLength minimum="8"/>
+						</h:inputSecret>
+						
+					</div>
+				</div>
+				<div class="row">
+					<div>
+						<h:outputLabel for="confirmPassword" value="#{bundle['signup.confirmPassword']}"/>
+						<span>
+							<h:message for="confirmPassword" errorClass="message-error"/>
+						</span>
+					</div>
+					<div>
+						<h:inputSecret id="confirmPassword" 
+						               value="#{signupMB.confirmPassword}" 
+						               required="true" 
+						               requiredMessage="#{bundle['required']}" 
+						               maxlength="20" 
+						               size="50"
+						               label="#{bundle['signup.confirmPassword']}">
+							<t:validateEqual forId="password" detailMessage="#{bundle['signup.password.notmatch']}"/>
+						</h:inputSecret>
+					</div>
+				</div>
+				<div class="row">
+					<div>
+						<h:commandButton value="#{bundle['common.signup']}" actionListener="#{signupMB.signup}"/>
+					</div>
+				</div>
+				<script type="text/javascript">
+					document.getElementById('signupForm:givenName').focus();
+				</script>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

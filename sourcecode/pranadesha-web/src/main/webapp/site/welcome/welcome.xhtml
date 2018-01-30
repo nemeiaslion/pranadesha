@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/common/template/publictemplate.xhtml">
+	<ui:define name="content">
+	    <div>
+            <div class="form-title"><h:outputText value="#{bundle['index']}"/></div>
+            <ul>
+                <li>
+                    <h:link outcome="/site/naturalperson/naturalperson" value="#{bundle['natural.person.title']}"/>
+                </li>
+                <li>
+                    <h:link outcome="/site/course/course.xhtml" value="#{bundle['course.type.title']}"/>
+                </li>
+                <li>
+                    <h:link outcome="/site/workshop/workshop.xhtml" value="#{bundle['workshop.title']}"/>
+                </li>
+            </ul>
+        </div>
+	</ui:define>
+</ui:composition>
+</html>

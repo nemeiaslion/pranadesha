@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+	<h:panelGroup layout="block">
+				<ul>
+					<li>
+						<h:link outcome="/site/social/home.xhtml?page=home" value="#{bundle['common.home']}" style="#{param.page eq 'home' ? 'color: #ff8040;' : ''}"/>
+					</li>
+					<li>
+						<h:link outcome="/site/social/home.xhtml?page=whatispranichealing" value="#{bundle['common.whatispranichealing']}" style="#{param.page eq 'whatispranichealing' ? 'color: #ff8040;' : ''}"/>
+					</li>
+					<li>
+						<h:link outcome="/site/social/home.xhtml?page=meditation" value="#{bundle['common.meditation']}" style="#{param.page eq 'meditation' ? 'color: #ff8040;' : ''}"/>
+					</li>
+					<li>
+						<h:link outcome="/site/social/home.xhtml?page=courses" value="#{bundle['common.courses']}" style="#{param.page eq 'courses' ? 'color: #ff8040;' : ''}"/>
+					</li>
+					<li>
+						<h:link outcome="/site/social/home.xhtml?page=contact" value="#{bundle['common.contact']}" style="#{param.page eq 'contact' ? 'color: #ff8040;' : ''}"/>
+					</li>
+				</ul>
+	</h:panelGroup>
+</html>

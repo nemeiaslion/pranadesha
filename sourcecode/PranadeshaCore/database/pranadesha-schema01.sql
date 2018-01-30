@@ -8,6 +8,10 @@ use pranadesha;
 
 drop table cm_person;
 drop table cm_natural_person;
+drop table cm_user;
+drop table cm_user_role;
+drop table cm_user_locale;
+drop table cm_user_timezone;
 drop table cm_person_phone;
 drop table um_course;
 drop table um_workshop;
@@ -48,6 +52,30 @@ create table cm_natural_person (
 ) engine MyISAM;
 
 create index ix_cm_natural_person_1 on cm_natural_person (mail);
+
+create table cm_user_locale (
+  locale_id char(5)
+  , constraint pk_cm_user_locale primary key (locale_id)
+) engine MyISAM;
+
+create table cm_user_timezone (
+  timezone_id char(50)
+  , constraint pk_cm_user_timezone primary key (timezone_id)
+);
+
+create table cm_user (
+  user_name char(50)
+  , user_password char(20)
+  , locale_id char(5)
+  , timezone_id char(50)
+  , constraint pk_user primary key (user_name)
+) engine MyISAM;
+
+create table cm_user_role (
+  user_name char(50)
+  , user_role char(20)
+  , constraint pk_user_role primary key (user_name, user_role)
+) engine MyISAM;
 
 create table cm_person_phone (
   person_phone_id integer unsigned not null auto_increment
@@ -155,3 +183,51 @@ create table am_product_image (
 
 create index ix_am_product_image_1 on am_product_image (product_id);
 
+INSERT INTO `pranadesha`.`cm_person`
+(`person_id`,
+`person_type`,
+`street_address`,
+`city`,
+`province`,
+`zip_code`)
+VALUES
+(null, null, 'Av. Prof. Vespasiano Veiga, 65', 'Araraquara', 'SP', '14802-550');
+
+INSERT INTO `pranadesha`.`cm_natural_person`
+(`person_id`,
+`first_name`,
+`middle_name`,
+`last_name`,
+`birthday_date`,
+`mail`,
+`mobile`)
+VALUES
+(last_insert_id(), 'Vinícius', 'Almeida', 'Paiva', null, 'vinicius.vs@gmail.com', '16 9 8127-9540');
+
+INSERT INTO `pranadesha`.`cm_user`
+(`user_name`,
+`user_password`
+,`locale_id`
+,`timezone_id`)
+VALUES
+('vinicius.vs@gmail.com', 'menininha', 'pt_BR', '');
+
+INSERT INTO `pranadesha`.`cm_user_role`
+(`user_name`,
+`user_role`)
+VALUES
+('vinicius.vs@gmail.com', 'USERS');
+
+
+INSERT INTO `pranadesha`.`cm_user_locale`
+(`locale_id`)
+VALUES
+('pt_BR'),('en_US');
+
+
+INSERT INTO `pranadesha`.`cm_user_timezone`
+(`timezone_id`)
+VALUES
+('America/Sao_Paulo');
+
+commit;

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:t="http://myfaces.apache.org/tomahawk">
+
+<ui:composition template="/common/template/usertemplate.xhtml">
+	<ui:define name="user-content">
+		<h:form id="searchForm">
+			<div>
+				<div class="form-title">${bundle['course.type.title']}</div>
+				<div>
+					<h:commandButton value="#{bundle['search']}" action="#{courseMB.search}"/>
+				</div>
+				<h:messages infoClass="message-info" errorClass="message-error"/>
+				<h:panelGroup layout="block" rendered="#{not empty courseMB.courses}">
+					<h:dataTable value="#{courseMB.courses}" 
+					             var="item" 
+					             styleClass="datatable"
+					             rowClasses="datatable-oddrow,datatable-evenrow"
+                             	 headerClass="datatable-header"
+                             	 width="100%">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle['course.id']}"/>
+							</f:facet>
+							<h:outputText value="#{item.id}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle['course.name']}"/>
+							</f:facet>
+							<h:link outcome="/site/course/course">
+								<f:param name="id" value="#{item.id}"/>
+								<h:outputText value="#{item.name}"/>
+							</h:link>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle['course.prerequisite']}"/>
+							</f:facet>
+							<h:outputText value="#{item.prerequisite.name}"/>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

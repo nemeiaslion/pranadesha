@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:t="http://myfaces.apache.org/tomahawk">
+
+<ui:composition template="/common/template/common.xhtml">
+	<ui:define name="user-info">
+		<h:panelGroup rendered="#{userMB.authenticated}">
+             <h:outputFormat value="#{bundle['logged.as']}">
+                 <f:param value="#{userMB.surname}, #{userMB.givenName}"></f:param>
+             </h:outputFormat>
+             <span>
+                 <a href="${request.contextPath}/logout">
+                     [<h:outputText value="#{bundle['logout']}"/>]
+                 </a> 
+             </span>
+        </h:panelGroup>
+	</ui:define>
+	<ui:define name="menu-bar">
+		<h:panelGroup layout="block">
+				<ul>
+					<li>
+						<h:link outcome="/site/social/home.xhtml?page=home" value="#{bundle['common.home']}" style="#{param.page eq 'home' ? 'color: #ff8040;' : ''}"/>
+					</li>
+					<li>
+						<h:link outcome="/site/social/home.xhtml?page=whatispranichealing" value="#{bundle['common.whatispranichealing']}" style="#{param.page eq 'whatispranichealing' ? 'color: #ff8040;' : ''}"/>
+					</li>
+					<li>
+						<h:link outcome="/site/social/home.xhtml?page=meditation" value="#{bundle['common.meditation']}" style="#{param.page eq 'meditation' ? 'color: #ff8040;' : ''}"/>
+					</li>
+					<li>
+						<h:link outcome="/site/social/home.xhtml?page=courses" value="#{bundle['common.courses']}" style="#{param.page eq 'courses' ? 'color: #ff8040;' : ''}"/>
+					</li>
+					<li>
+						<h:link outcome="/site/social/home.xhtml?page=contact" value="#{bundle['common.contact']}" style="#{param.page eq 'contact' ? 'color: #ff8040;' : ''}"/>
+					</li>
+					<li>
+						<h:link outcome="/site/user/myprofile.xhtml?page=myprofile" value="#{bundle['common.myprofile']}" style="#{param.page eq 'myprofile' ? 'color: #ff8040;' : ''}"/>
+					</li>
+				</ul>
+		</h:panelGroup>
+	</ui:define>
+	<ui:define name="content">
+		<h:panelGroup layout="block" styleClass="left-menu">
+			<ul>
+				<li>
+					<h:link outcome="/site/naturalperson/naturalperson" value="#{bundle['student.title']}"/>
+					<ul>
+						<li>
+							<h:link outcome="/site/naturalperson/naturalperson" value="#{bundle['add']}"/>
+						</li>
+						<li>
+							<h:link outcome="/site/naturalperson/search" value="#{bundle['search']}"/>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<h:link outcome="/site/course/course" value="#{bundle['course.title']}"/>
+					<ul>
+						<li>
+							<h:link outcome="/site/course/course" value="#{bundle['add']}"/>
+						</li>
+						<li>
+							<h:link outcome="/site/course/search" value="#{bundle['search']}"/>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<h:link outcome="/site/workshop/workshop" value="#{bundle['workshop.title']}"/>
+					<ul>
+						<li>
+							<h:link outcome="/site/workshop/workshop" value="#{bundle['add']}"/>
+						</li>
+						<li>
+							<h:link outcome="/site/workshop/search" value="#{bundle['search']}"/>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<h:link outcome="/site/social/home.xhtml?page=home" value="#{bundle['inventory.title']}"/>
+					<ul>
+						<li>
+							<h:link outcome="/site/social/home.xhtml?page=home" value="#{bundle['add']}"/>
+						</li>
+						<li>
+							<h:link outcome="/site/social/home.xhtml?page=home" value="#{bundle['search']}"/>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</h:panelGroup>
+		<h:panelGroup layout="block" styleClass="right-menu">
+			<ul>
+				<li>
+					<h:link outcome="/site/social/home.xhtml?page=home" value="#{bundle['common.home']}"/>
+				</li>
+			</ul>
+		</h:panelGroup>
+		<h:panelGroup layout="block" styleClass="user-content">
+	        <ui:insert name="user-content">
+	        
+	        </ui:insert>
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>
+</html>

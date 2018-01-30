@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../common/css/common.css" />
+</head>
+<body>
+	<div id="header">
+		<div style="position: absolute; right: 0">
+			<select>
+				<option>English</option>
+				<option>Portuguese</option>
+			</select>
+		</div>
+		<div style="text-align: center; color: #ffff80; padding: 10px; font-size: 36px; font-weight: bold;">Pranadesha Web Application</div>
+	</div>
+	<div id="middle-bar">
+		<div id="menu-bar" style="width: 800px;">
+			<ul>
+				<li>
+					<a href="welcome.html">Home</a>
+				</li>
+				<li>
+					<a href="oqueecurapranica.html">O que &eacute; Cura Pr&acirc;nica</a>
+				</li>
+				<li>
+					<a href="meditacao.html">Medita&ccedil;&atilde;o</a>
+				</li>
+				<li>
+					<a href="agendadecursos.html">Agenda de Cursos</a>
+				</li>
+				<li>
+					<a href="contato.html">Contato</a>
+				</li>
+				<li>
+					<a href="login.html" style="color: #ff8040;">Login</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div id="content">
+		<form action="login.html" method="post" id="loginForm">
+			<div style="height: 10px; width: 10px;"></div>
+			<div style="margin: auto; width: 250px;">
+				<div class="datarow">
+					<div class="metadata" style="width: 60px;">
+						<label for="j_username">Usu&aacute;rio</label>
+					</div>
+					<div class="infodata">
+						<input id="j_username" name="j_username" type="text" />
+					</div>
+				</div>
+				<div class="datarow">
+					<div class="metadata" style="width: 60px;">
+						<label for="j_password">Senha</label>
+					</div>
+					<div class="infodata">
+						<input id="j_password" name="j_password" type="password" />
+					</div>
+				</div>
+				<div class="datarow">
+					<div class="metadata" style="width: 60px;">
+						<div style="height: 10px; width: 10px;"></div>
+					</div>
+					<input type="submit" value="Login" />
+                    <input type="reset" value="Limpar" />
+				</div>
+				<script type="text/javascript">
+					document.getElementById("j_username").focus();
+				</script>
+			</div>
+		</form>
+	</div>
+	<div id="footer">
+		<div>Pranadesha Web</div>
+	</div>
+</body>
+</html>

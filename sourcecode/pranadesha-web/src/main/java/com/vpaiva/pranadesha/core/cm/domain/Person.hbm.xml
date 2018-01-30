@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.vpaiva.pranadesha.core.cm.domain">
+  <class name="Person" table="cm_person">
+    <id name="id" column="person_id">
+      <generator class="identity"/>
+    </id>
+    <property name="streetAddress" column="street_address"/>
+    <property name="city" column="city"/>
+    <property name="province" column="province"/>
+    <property name="zipCode" column="zip_code"/>
+    <joined-subclass name="NaturalPerson" table="cm_natural_person">
+      <key column="person_id"/>
+      <property name="givenName" column="first_name"/>
+      <property name="middleName" column="middle_name"/>
+      <property name="surname" column="last_name"/>
+      <property name="birthDate" column="birthday_date"/>
+      <property name="mail" column="mail"/>
+      <property name="mobile" column="mobile"/>
+    </joined-subclass>
+  </class>
+</hibernate-mapping>

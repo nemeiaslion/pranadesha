@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:t="http://myfaces.apache.org/tomahawk">
+
+<ui:composition template="/common/template/usertemplate.xhtml">
+	<ui:define name="user-content">
+        <h:form id="naturalPersonForm">
+    	    <h:inputHidden id="id" value="#{naturalPersonMB.id}"/>
+    	    <t:saveState value="#{naturalPersonMB.id}"/>
+    	    <div>
+                <div class="form-title">${bundle['natural.person.title']}</div>
+                <div class="row">
+                    <div class="metadata">
+                        <h:outputLabel for="givenName" value="#{bundle['natural.person.givenName']}"/>
+                    </div>
+                    <div class="infodata">
+                        <h:inputText id="givenName" required="true" value="#{naturalPersonMB.givenName}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="metadata">
+                        <h:outputLabel for="middleName" value="#{bundle['natural.person.middleName']}"/>
+                    </div>
+                    <div class="infodata">
+                        <h:inputText id="middleName" value="#{naturalPersonMB.middleName}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="metadata">
+                        <h:outputLabel for="surname" value="#{bundle['natural.person.surname']}"/>
+                    </div>
+                    <div class="infodata">
+                        <h:inputText id="surname" required="true" value="#{naturalPersonMB.surname}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="metadata">
+                        <h:outputLabel for="userPassword" value="#{bundle['natural.person.userPassword']}"/>
+                    </div>
+                    <div class="infodata">
+                        <h:inputSecret id="userPassword" required="true" value="#{naturalPersonMB.userPassword}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="metadata">
+                        <h:outputLabel for="description" value="#{bundle['natural.person.description']}"/>
+                    </div>
+                    <div class="infodata">
+                        <h:inputText id="description" value="#{naturalPersonMB.description}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="metadata">
+                        <h:outputLabel for="birthDate" value="#{bundle['natural.person.birthDate']}"/>
+                    </div>
+                    <div class="infodata">
+                        <t:inputDate id="birthDate" required="true" value="#{naturalPersonMB.birthDate}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="metadata">
+                        <h:outputLabel for="mail" value="#{bundle['natural.person.mail']}"/>
+                    </div>
+                    <div class="infodata">
+                        <h:inputText id="mail" required="true" value="#{naturalPersonMB.mail}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="metadata">
+                        <h:outputLabel for="mobile" value="#{bundle['natural.person.mobile']}"/>
+                    </div>
+                    <div class="infodata">
+                        <h:inputText id="mobile" value="#{naturalPersonMB.mobile}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="metadata">
+                        <h:outputLabel for="streetAddress" value="#{bundle['person.streetAddress']}"/>
+                    </div>
+                    <div class="infodata">
+                        <h:inputText id="streetAddress" value="#{naturalPersonMB.streetAddress}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="metadata">
+                        <h:outputLabel for="city" value="#{bundle['person.city']}"/>
+                    </div>
+                    <div class="infodata">
+                        <h:inputText id="city" value="#{naturalPersonMB.city}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="metadata">
+                        <h:outputLabel for="province" value="#{bundle['person.province']}"/>
+                    </div>
+                    <div class="infodata">
+                        <h:inputText id="province" value="#{naturalPersonMB.province}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="metadata">
+                        <h:outputLabel for="zipCode" value="#{bundle['person.zipCode']}"/>
+                    </div>
+                    <div class="infodata">
+                        <h:inputText id="zipCode" value="#{naturalPersonMB.zipCode}"/>
+                    </div>
+                </div>
+                <h:messages></h:messages>
+                <div class="button-bar">
+                	<h:commandButton value="#{bundle['delete']}" action="#{naturalPersonMB.delete}" rendered="#{naturalPersonMB.id ne null}" immediate="true" />
+                    <h:commandButton value="#{bundle['save']}" actionListener="#{naturalPersonMB.save}"/>
+                    <h:commandButton value="#{bundle['new']}" action="#{naturalPersonMB.clear}" rendered="#{naturalPersonMB.id ne null}" immediate="true"/>
+                </div>
+                <div class="empty-box"></div>
+                <script type="text/javascript">
+                document.getElementById("naturalPersonForm:givenName").focus();
+                </script>
+            </div>
+        </h:form>
+	</ui:define>
+</ui:composition>
+</html>

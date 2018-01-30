@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:t="http://myfaces.apache.org/tomahawk">
+
+<ui:composition template="/common/template/usertemplate.xhtml">
+	<ui:define name="user-content">
+		<h:form id="workshopForm">
+			<div>
+				<div class="form-title">${bundle['workshop.title']}</div>
+                <div class="row">
+                	<div class="metadata">
+                		<h:outputLabel for="courseId" value="#{bundle['workshop.course']}"/>
+                	</div>
+                	<div class="infodata">
+                		<h:inputText id="courseId" value="#{workshopMB.courseId}" size="3" required="true" requiredMessage="#{bundle['required']}"/>
+                		<h:message for="courseId"/>
+                	</div>
+                </div>
+                <div class="row">
+                	<div class="metadata">
+                		<h:outputLabel for="initDate" value="#{bundle['workshop.initDate']}"/>
+                	</div>
+                	<div class="infodata">
+                		<t:inputDate id="initDate" value="#{workshopMB.initDate}" required="true" requiredMessage="#{bundle['required']}"/>
+                		<h:message for="initDate"/>
+                	</div>
+                </div>
+                <div class="row">
+                	<div class="metadata">
+                		<h:outputLabel for="endDate" value="#{bundle['workshop.endDate']}"/>
+                	</div>
+                	<div class="infodata">
+                		<t:inputDate id="endDate" value="#{workshopMB.endDate}" required="true" requiredMessage="#{bundle['required']}"/>
+                		<h:message for="endDate"/>
+                	</div>
+                </div>
+                <h:messages infoClass="message-info" errorClass="message-error" globalOnly="true"/>
+                <div>
+                	<h:commandButton value="#{bundle['save']}" actionListener="#{workshopMB.save}"/>
+                </div>
+        	</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

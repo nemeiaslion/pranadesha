@@ -40,11 +40,13 @@ public class SessionListener implements HttpSessionListener {
      */
     public void sessionCreated(HttpSessionEvent se)  {
     	log.debug("session created " + se.getSession().getId());
-    	try {
-    		LdapSecurity.init(context);
-		} catch (NamingException e) {
-			log.catching(e);
-		}
+    	if (WebProperties.isLdapSecurityDevice()) {
+        	try {
+        		LdapSecurity.init(context);
+    		} catch (NamingException e) {
+    			log.catching(e);
+    		}
+    	}
     }
 
 	/**

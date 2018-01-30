@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:t="http://myfaces.apache.org/tomahawk">
+
+<ui:composition template="/common/template/usertemplate.xhtml">
+	<ui:define name="user-content">
+        <div class="form-title"><h:outputText value="#{bundle['myprofile.title']}"/></div>
+		<div class="center-form" style="width: 800px;">
+	        <h:form id="myProfileForm">
+	        	<div>
+	        		<t:saveState value="#{myProfileMB.id}"/>
+	        	</div>
+	        	<h:messages errorClass="message-error" infoClass="message-info" globalOnly="true"/>
+	        	<div class="row" style="float: left; width: 50%;">
+	        		<div>
+	        			<h:outputLabel for="givenName" value="#{bundle['natural.person.givenName']}"/>
+	        			<span>
+							<h:message for="givenName" errorClass="message-error"/>
+						</span>
+	        		</div>
+	        		<div>
+	        			<h:inputText id="givenName" value="#{myProfileMB.givenName}" size="50"/>
+	        		</div>
+	        	</div>
+	        	<div class="row">
+	        		<div>
+	        			<h:outputLabel for="middleName" value="#{bundle['natural.person.middleName']}"/>
+	        			<span>
+							<h:message for="middleName" errorClass="message-error"/>
+						</span>
+	        		</div>
+	        		<div>
+	        			<h:inputText id="middleName" value="#{myProfileMB.middleName}" size="50"/>
+	        		</div>
+	        	</div>
+	        	<div class="row" style="float: left; width: 50%;">
+	        		<div>
+	        			<h:outputLabel for="surname" value="#{bundle['natural.person.surname']}"/>
+	        			<span>
+							<h:message for="surname" errorClass="message-error"/>
+						</span>
+	        		</div>
+	        		<div>
+	        			<h:inputText id="surname" value="#{myProfileMB.surname}" size="50"/>
+	        		</div>
+	        	</div>
+	        	<div class="row">
+	        		<div>
+	        			<h:outputLabel for="birthDate" value="#{bundle['natural.person.birthDate']}"/>
+	        			<span>
+							<h:message for="birthDate" errorClass="message-error"/>
+						</span>
+	        		</div>
+	        		<div>
+	        			<t:inputDate id="birthDate" value="#{myProfileMB.birthDate}"/>
+	        		</div>
+	        	</div>
+	        	<div class="row" style="float: left; width: 50%;">
+	        		<div>
+	        			<h:outputLabel for="mail" value="#{bundle['natural.person.mail']}"/>
+	        			<span>
+							<h:message for="mail" errorClass="message-error"/>
+						</span>
+	        		</div>
+	        		<div>
+	        			<h:inputText id="mail" value="#{myProfileMB.mail}" size="50"/>
+	        		</div>
+	        	</div>
+	        	<div class="row">
+	        		<div>
+	        			<h:outputLabel for="mobile" value="#{bundle['natural.person.mobile']}"/>
+	        			<span>
+							<h:message for="mobile" errorClass="message-error"/>
+						</span>
+	        		</div>
+	        		<div>
+	        			<h:inputText id="mobile" value="#{myProfileMB.mobile}" size="50"/>
+	        		</div>
+	        	</div>
+	        	<div class="row" style="float: left; width: 50%;">
+	        		<div>
+	        			<h:outputLabel for="streetAddress" value="#{bundle['person.streetAddress']}"/>
+	        			<span>
+							<h:message for="streetAddress" errorClass="message-error"/>
+						</span>
+	        		</div>
+	        		<div>
+	        			<h:inputText id="streetAddress" value="#{myProfileMB.streetAddress}" size="50"/>
+	        		</div>
+	        	</div>
+	        	<div class="row">
+	        		<div>
+	        			<h:outputLabel for="city" value="#{bundle['person.city']}"/>
+	        			<span>
+							<h:message for="city" errorClass="message-error"/>
+						</span>
+	        		</div>
+	        		<div>
+	        			<h:inputText id="city" value="#{myProfileMB.city}" size="50"/>
+	        		</div>
+	        	</div>
+	        	<div class="row" style="float: left; width: 50%;">
+	        		<div>
+	        			<h:outputLabel for="province" value="#{bundle['person.province']}"/>
+	        			<span>
+							<h:message for="province" errorClass="message-error"/>
+						</span>
+	        		</div>
+	        		<div>
+	        			<h:inputText id="province" value="#{myProfileMB.province}" size="50"/>
+	        		</div>
+	        	</div>
+	        	<div class="row">
+	        		<div>
+	        			<h:outputLabel for="zipCode" value="#{bundle['person.zipCode']}"/>
+	        			<span>
+							<h:message for="zipCode" errorClass="message-error"/>
+						</span>
+	        		</div>
+	        		<div>
+	        			<h:inputText id="zipCode" value="#{myProfileMB.zipCode}" size="50"/>
+	        		</div>
+	        	</div>
+	        	<div class="row" style="float: left; width: 50%;">
+	        		<div>
+	        			<h:outputLabel for="language" value="#{bundle['myprofile.language']}"/>
+	        			<span>
+							<h:message for="language" errorClass="message-error"/>
+						</span>
+	        		</div>
+	        		<div>
+	        			<h:selectOneMenu id="language" value="#{myProfileMB.language}">
+	        				<f:selectItems value="#{myProfileMB.languages}" var="item" itemValue="#{item.id}" itemLabel="#{item.name}"/>
+	        			</h:selectOneMenu>
+	        		</div>
+	        	</div>
+	        	<div class="row">
+	        		<div>
+	        			<h:outputLabel for="timezone" value="#{bundle['myprofile.timezone']}"/>
+	        			<span>
+							<h:message for="timezone" errorClass="message-error"/>
+						</span>
+	        		</div>
+	        		<div>
+	        			<h:selectOneMenu id="timezone" value="#{myProfileMB.timezone}">
+	        				<f:selectItems value="#{myProfileMB.timezones}" var="item" itemValue="#{item.id}" itemLabel="#{item.nameAndOffset}"/>
+	        			</h:selectOneMenu>
+	        		</div>
+	        	</div>
+	        	<div>
+	        		<div class="infodata">
+	        			<h:commandButton value="#{bundle['save']}" actionListener="#{myProfileMB.save}"/>
+	        		</div>
+	        	</div>
+	        </h:form>
+	        <script type="text/javascript">
+	        	document.getElementById("myProfileForm:givenName").focus();
+	        </script>
+        </div>
+	</ui:define>
+</ui:composition>
+</html>

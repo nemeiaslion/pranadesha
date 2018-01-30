@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/common/template/publictemplate.xhtml">
+	<ui:define name="content">
+		<div class="center-form" style="width: 430px;">
+			<h:form id="contactForm">
+				<h:messages errorClass="message-error" infoClass="message-info" globalOnly="true"/>
+				<div class="row">
+					<div class="metadata">
+						<h:outputLabel for="name" value="#{bundle['contact.name']}"/>
+						<h:message for="name" errorClass="message-error"/>
+					</div>
+					<div class="infodata">
+						<h:inputText id="name" value="#{contactMB.name}" required="true" size="50" requiredMessage="*"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="metadata">
+						<h:outputLabel for="email" value="#{bundle['contact.email']}"/>
+						<h:message for="email" errorClass="message-error"/>
+					</div>
+					<div class="infodata">
+						<h:inputText id="email" value="#{contactMB.email}" required="true" size="50" requiredMessage="*"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="metadata">
+						<h:outputLabel for="subject" value="#{bundle['contact.subject']}"/>
+						<h:message for="subject" errorClass="message-error"/>
+					</div>
+					<div class="infodata">
+						<h:inputText id="subject" value="#{contactMB.subject}" required="true" size="50" requiredMessage="*"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="metadata">
+						<h:outputLabel for="message" value="#{bundle['contact.message']}"/>
+						<h:message for="message" errorClass="message-error"/>
+					</div>
+					<div class="infodata">
+						<h:inputTextarea id="message" value="#{contactMB.message}" required="true" cols="50" rows="10" requiredMessage="*"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="metadata">
+						<div style="height: 10px; width: 10px;"></div>
+					</div>
+					<div class="infodata">
+						<h:commandButton value="#{bundle['send']}" actionListener="#{contactMB.send}"/>
+					</div>
+				</div>
+			</h:form>
+			<script type="text/javascript">
+				document.getElementById("contactForm:name").focus();
+			</script>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>
